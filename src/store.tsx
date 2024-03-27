@@ -1,16 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { gamesApi } from './services/games'
+import { characterApi } from './services/character'
 import { setupListeners } from '@reduxjs/toolkit/query'
 
 export const store = configureStore({
     reducer: {
-        // Add the generated reducer as a specific top-level slice
-        [gamesApi.reducerPath]: gamesApi.reducer,
+        [characterApi.reducerPath]: characterApi.reducer,
     },
-    // Adding the api middleware enables caching, invalidation, polling,
-    // and other useful features of `rtk-query`.
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(gamesApi.middleware),
+
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(characterApi.middleware),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

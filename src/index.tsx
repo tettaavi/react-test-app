@@ -5,13 +5,39 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { store } from './store'
 import { Provider } from 'react-redux'
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import { Header } from './pages/Header/Header';
+
+const router = createBrowserRouter([
+  {
+    path: "*", // TODO: Create page for home ?
+    element: <App />,
+  },
+  // {
+  //   path: "/character",
+  //   element: <Character title="Character" />,
+  // },
+  // {
+  //   path: "/episodes",
+  //   element: <Character title="Episodes" />,
+  // },
+  // {
+  //   path: "/locations",
+  //   element: <Character title="Locations" />,
+  // },
+]);
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <Provider store={store}>
-    <App />
+    <Header />
+    <RouterProvider router={router} />
   </Provider>,
 );
 
