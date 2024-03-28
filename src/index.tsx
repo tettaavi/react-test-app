@@ -9,7 +9,6 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { Header } from './pages/Header/Header';
 
 const router = createBrowserRouter([
   {
@@ -36,7 +35,6 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider store={store}>
-    <Header />
     <RouterProvider router={router} />
   </Provider>,
 );
