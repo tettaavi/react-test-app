@@ -1,11 +1,18 @@
-import { useGetcharacterQuery } from "../../services/character"
-// import { Character as CharacterInterface } from "../../services/types";
+import { useGetCharacterQuery } from "../../services/character"
 
 import Grid from '@mui/material/Unstable_Grid2';
 import { CharacterCard } from "./CharacterCard";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
-export const Character = ({ title }: { title: string }) => {
-    const { data, error, isLoading } = useGetcharacterQuery('');
+import { useLocation, useNavigate } from 'react-router-dom';
+
+export const Character = () => {
+    const location = useLocation();
+    const query = new URLSearchParams(location.search);
+    const page = parseInt(query.get('page') || '1', 10);
+    const navigate = useNavigate();
+    const { data, error, isLoading } = useGetCharacterQuery(page.toString());
 
     const listItems = data?.results.map((character) =>
         <Grid xs={3} key={character.id}>
@@ -13,9 +20,20 @@ export const Character = ({ title }: { title: string }) => {
         </Grid>
     );
 
+    function handlePaginationChange(_: React.ChangeEvent<unknown>, value: number) {
+        navigate(`?page=${value}`)
+    }
+
     return <div>
-        {title}
 
         <Grid container spacing={5}>{listItems}</Grid>
+        {
+            data?.info.pages ?
+                <Stack spacing={2}>
+                    <Pagination page={page} count={data?.info.pages} color="secondary" onChange={handlePaginationChange} />
+                </Stack>
+                : null
+        }
+
     </div>;
 }

@@ -12,21 +12,9 @@ import {
 
 const router = createBrowserRouter([
   {
-    path: "*", // TODO: Create page for home ?
+    path: "*",
     element: <App />,
   },
-  // {
-  //   path: "/character",
-  //   element: <Character title="Character" />,
-  // },
-  // {
-  //   path: "/episodes",
-  //   element: <Character title="Episodes" />,
-  // },
-  // {
-  //   path: "/locations",
-  //   element: <Character title="Locations" />,
-  // },
 ]);
 
 
