@@ -6,12 +6,12 @@ export const characterApi = createApi({
     reducerPath: 'characterApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'https://rickandmortyapi.com/api' }),
     endpoints: (builder) => ({
-        getcharacter: builder.query<Characters, string>({
-            query: () => `character`,
+        getCharacter: builder.query<Characters, string>({
+            query: (page: string) => `character/?page=${page}`,
         }),
     }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetcharacterQuery } = characterApi
+export const { useGetCharacterQuery } = characterApi

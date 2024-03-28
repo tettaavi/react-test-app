@@ -3,10 +3,13 @@ import './App.scss';
 import {
   Route,
   Routes,
+  Navigate
 } from "react-router-dom";
 import { Character } from './pages/Characters/Characters';
 import { Header } from './pages/Header/Header';
 import { Container } from '@mui/system';
+import { Episodes } from './pages/Episodes/Episodes';
+import { Locations } from './pages/Locations/Locations';
 
 function App() {
   return (
@@ -14,9 +17,13 @@ function App() {
       <Header />
       <Container maxWidth="lg">
         <Routes>
-          <Route path="/" element={<Character title="Character" />} />
-          <Route path="/episodes/*" element={<Character title="Episodes" />} />
-          <Route path="/locations/*" element={<Character title="Locations" />} />
+          <Route
+            path="/"
+            element={<Navigate to="/characters" replace />}
+          />
+          <Route path="/characters/*" element={<Character />} />
+          <Route path="/episodes/*" element={<Episodes />} />
+          <Route path="/locations/*" element={<Locations />} />
         </Routes>
       </Container>
     </div>

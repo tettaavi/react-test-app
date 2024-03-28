@@ -1,13 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { characterApi } from './services/character'
 import { setupListeners } from '@reduxjs/toolkit/query'
+import { episodesApi } from './services/episodes'
+import { locationsApi } from './services/locations'
 
 export const store = configureStore({
     reducer: {
         [characterApi.reducerPath]: characterApi.reducer,
+        [episodesApi.reducerPath]: episodesApi.reducer,
+        [locationsApi.reducerPath]: locationsApi.reducer,
     },
 
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(characterApi.middleware),
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(characterApi.middleware, episodesApi.middleware, locationsApi.middleware),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
